@@ -19,29 +19,12 @@ export default {
 				alert('할 일을 입력해 주세요!');
 				return;
 			}
-			// console.log(this.newTodoItem);
-			const obj = {item : this.newTodoItem , completed : false , regDate : this.setDate()}
-			localStorage.setItem(this.newTodoItem,JSON.stringify(obj));
-			
-			this.clearTodoItem();
-		},
 
-		setDate() {
-			const date = new Date()
-			const regDate = date.getFullYear()
-							+dateAddZero(date.getMonth()+1)
-							+dateAddZero(date.getDate())
-							+dateAddZero(date.getHours())
-							+dateAddZero(date.getMinutes())
-							+dateAddZero(date.getSeconds())
-							+"."
-							+date.getMilliseconds();		
-			// console.log(regDate);
-			function dateAddZero(dTime) {
-				const str= (dTime<10) ? "0"+dTime : dTime
-				return str;
-			}
-			return regDate
+			this.$emit('addTodo',this.newTodoItem);
+			// console.log(this.newTodoItem);
+			// const obj = {item : this.newTodoItem , completed : false , regDate : this.setDate()}
+			// localStorage.setItem(this.newTodoItem,JSON.stringify(obj));
+			this.clearTodoItem();
 		},
 
 		clearTodoItem() {
