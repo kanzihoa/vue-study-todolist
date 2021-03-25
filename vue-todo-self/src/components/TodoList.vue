@@ -1,6 +1,6 @@
 <template>
 	<div class="todo-list">
-		<ul>
+		<transition-group name="list" tag="ul">
 			<li v-for="(todoItem , index) in this.propstodoItems" :key="todoItem.item">
 				<div class="cont">
 					<input type="checkbox" v-bind:id="'chkbox-'+index" v-bind:checked="todoItem.completed" @click="todoItemCompleted(todoItem)">
@@ -10,16 +10,23 @@
 				</div>
 				<button class="btn-delete" type="button" v-on:click="todoItemDelete(index)">X</button>
 			</li>
-		</ul>
+		</transition-group>
 	</div>
 </template>
 
 <script>
 export default {
 	props : ['propstodoItems'],
+	
+	data() {
+		return {
+
+		}	
+	},
+
 	methods : {
 		todoItemCompleted(todoItemParam) {
-			this.$emit('completedTodoItem',todoItemParam);
+			this.$emit('completedTodoItem',todoItemParam);  
 		},
 
 		todoItemDelete(index) {
@@ -31,4 +38,4 @@ export default {
 
 <style>
 
-</style>
+</style> 
